@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NaXxTech</title>
+
+<style>
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    background: #0a0a0a;
+    background-image: radial-gradient(circle at 20% 20%, #1a1a40, transparent 40%),
+                      radial-gradient(circle at 80% 80%, #00f, transparent 40%);
+    scroll-behavior: smooth;
+
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* HEADER */
+header {
+    text-align: center;
+    padding: 30px;
+    font-size: 32px;
+    font-weight: bold;
+    text-shadow: 0 0 10px #00f;
+    cursor: pointer;
+}
+
+/* TOPBAR */
+.topbar {
+    text-align: center;
+    padding: 14px;
+    border-bottom: 1px solid #222;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+}
+
+/* ICONOS NEON */
+.icon {
+    font-size: 22px;
+    text-decoration: none;
+    color: white;
+    transition: 0.2s;
+}
+
+.icon:hover {
+    transform: scale(1.2);
+}
+
+.whatsapp {
+    text-shadow: 0 0 8px #00ff7f, 0 0 15px #00ff7f;
+}
+
+.insta {
+    text-shadow: 0 0 8px #ff00ff, 0 0 15px #ff00ff;
+}
+
+/* MENU */
+.menu {
+    text-align: center;
+    margin: 20px;
+}
+
+.btn {
+    display: inline-block;
+    margin: 10px;
+    padding: 12px 20px;
+    background: #111;
+    border: 1px solid #00f;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+/* SECCIONES */
+.section {
+    display: none;
+    padding: 30px;
+    text-align: center;
+}
+
+.active {
+    display: block;
+}
+
+/* PRODUCTS */
+.products {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
+
+/* CARD */
+.card {
+    background: #111;
+    border: 1px solid #00f;
+    padding: 20px;
+    width: 260px;
+    border-radius: 15px;
+}
+
+/* SLIDER */
+.slider {
+    position: relative;
+}
+
+.slider img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0,0,0,0.6);
+    border: none;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.arrow.left { left: 5px; }
+.arrow.right { right: 5px; }
+
+/* COLORES */
+.colors {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.color {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    border: 2px solid white;
+    cursor: pointer;
+}
+
+.black { background: black; }
+.white { background: white; }
+.pink { background: pink; }
+
+/* LIGHTBOX */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.9);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 10px;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+/* GALERIA */
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+.gallery img {
+    width: 220px;
+    height: 140px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid #00f;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    border-top: 1px solid #222;
+    margin-top: auto;
+}
+
+/* ========================= */
+/* CARRITO (AGREGADO) */
+/* ========================= */
+
+.cart {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    background: #00f;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 26px;
+    cursor: pointer;
+    box-shadow: 0 0 15px #00f;
+    z-index: 9999;
+    transition: 0.2s;
+}
+
+.cart:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px #00f;
+}
+</style>
+</head>
+
+<body>
+
+<header onclick="home()">
+⚡ Na<span style="color:blue;">X</span>xTech
+</header>
+
+<div class="topbar">
+<a class="icon whatsapp" href="https://wa.me/541132673847" target="_blank">🟢 WhatsApp</a>
+<a class="icon insta" href="https://instagram.com/nax._tech" target="_blank">🟣 Instagram</a>
+</div>
+
+<div class="menu">
+<button class="btn" onclick="show('home')">🏠 Inicio</button>
+<button class="btn" onclick="show('auris')">🎧 Auriculares</button>
+<button class="btn" onclick="show('fundas')">📱 Fundas</button>
+</div>
+
+<!-- HOME -->
+<div id="home" class="section active">
+<h2>⚡ Tecnología Gamer</h2>
+
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2" onclick="openLightbox(this.src)">
+<img src="https://images.unsplash.com/photo-1542751371-adc38448a05e" onclick="openLightbox(this.src)">
+<img src="https://images.unsplash.com/photo-1593642634367-d91a135587b5" onclick="openLightbox(this.src)">
+<img src="https://images.unsplash.com/photo-1587829741301-dc798b83add3" onclick="openLightbox(this.src)">
+</div>
+</div>
+
+<!-- AURICULARES -->
+<div id="auris" class="section">
+
+<h2>🎧 Auriculares Bluetooth</h2>
+
+<div class="products">
+
+<!-- AIR31 -->
+<div class="card">
+<div class="slider">
+<img id="img-air31" src="https://http2.mlstatic.com/D_NQ_NP_2X_993083-MLA99600113090_122025-F.webp" onclick="openLightbox(this.src)">
+<button class="arrow left" onclick="changeImg('air31',-1)">❮</button>
+<button class="arrow right" onclick="changeImg('air31',1)">❯</button>
+</div>
+
+<h3>FanAir31 Bluetooth</h3>
+
+<div class="colors">
+<div class="color black" onclick="setColor('black')"></div>
+<div class="color white" onclick="setColor('white')"></div>
+<div class="color pink" onclick="setColor('pink')"></div>
+</div>
+
+<a class="btn">Comprar</a>
+</div>
+
+<!-- A10S -->
+<div class="card">
+<div class="slider">
+<img id="img-a10s" src="https://http2.mlstatic.com/D_NQ_NP_2X_809647-MLA100083087007_122025-F.webp" onclick="openLightbox(this.src)">
+<button class="arrow left" onclick="changeImg('a10s',-1)">❮</button>
+<button class="arrow right" onclick="changeImg('a10s',1)">❯</button>
+</div>
+
+<h3>Fan Pro A10S</h3>
+<p>Con estuche carga</p>
+
+<a class="btn">Comprar</a>
+</div>
+
+<!-- M90 -->
+<div class="card">
+<div class="slider">
+<img id="img-m90" src="https://http2.mlstatic.com/D_NQ_NP_2X_837450-MLA100129445279_122025-F.webp" onclick="openLightbox(this.src)">
+<button class="arrow left" onclick="changeImg('m90',-1)">❮</button>
+<button class="arrow right" onclick="changeImg('m90',1)">❯</button>
+</div>
+
+<h3>Keluona M90 Pro LED</h3>
+<p>Gaming LED</p>
+
+<a class="btn">Comprar</a>
+</div>
+
+</div>
+</div>
+
+<!-- FUNDAS -->
+<div id="fundas" class="section">
+<h2>📱 Fundas</h2>
+<p>🚧 Próximamente...</p>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lightbox" id="lightbox" onclick="closeLightbox()">
+<span class="close">✖</span>
+<img id="lightbox-img">
+</div>
+
+<!-- ===================== -->
+<!-- CARRITO AGREGADO -->
+<!-- ===================== -->
+<div class="cart" onclick="openCart()">🛒</div>
+
+<footer>
+📸 Instagram: @nax._tech
+</footer>
+
+<script>
+
+/* NAV */
+function show(id){
+document.querySelectorAll(".section").forEach(s=>s.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+}
+
+function home(){
+show("home");
+}
+
+/* LIGHTBOX */
+function openLightbox(src){
+document.getElementById("lightbox").style.display="flex";
+document.getElementById("lightbox-img").src=src;
+}
+
+function closeLightbox(){
+document.getElementById("lightbox").style.display="none";
+}
+
+/* CARRITO (AGREGADO) */
+function openCart(){
+alert("Carrito vacío 🛒");
+}
+
+/* AIR31 COLORES */
+const air31Colors = {
+black:[
+"https://http2.mlstatic.com/D_NQ_NP_2X_993083-MLA99600113090_122025-F.webp",
+"https://http2.mlstatic.com/D_NQ_NP_2X_983615-MLA91477375342_092025-F.webp",
+"https://http2.mlstatic.com/D_NQ_NP_2X_638297-MLA91477192706_092025-F.webp",
+"https://http2.mlstatic.com/D_NQ_NP_2X_943979-MLA91875219763_092025-F.webp"
+],
+white:[
+"https://http2.mlstatic.com/D_NQ_NP_2X_651086-MLA99622270766_122025-F.webp",
+"https://http2.mlstatic.com/D_NQ_NP_2X_727004-MLA91055551516_092025-F.webp",
+"https://http2.mlstatic.com/D_NQ_NP_2X_743006-MLA91055581324_092025-F.webp"
+],
+pink:[
+"https://http2.mlstatic.com/D_NQ_NP_2X_905592-MLA99598295450_122025-F.webp",
+"https://http2.mlstatic.com/D_NQ_NP_2X_622127-MLA91953923505_092025-F.webp",
+"https://http2.mlstatic.com/D_NQ_NP_2X_974652-MLA91953952849_092025-F.webp",
+"https://http2.mlstatic.com/D_NQ_NP_2X_668291-MLA91954156479_092025-F.webp"
+]
+};
+
+let current="black";
+let index=0;
+
+function setColor(color){
+current=color;
+index=0;
+document.getElementById("img-air31").src=air31Colors[color][0];
+}
+
+/* SLIDERS */
+const normal={
+a10s:[
+"https://http2.mlstatic.com/D_NQ_NP_2X_809647-MLA100083087007_122025-F.webp",
+"https://http2.mlstatic.com/D_NQ_NP_2X_738671-MLA91874342071_092025-F.webp",
+"https://http2.mlstatic.com/D_NQ_NP_2X_937102-MLA91874398541_092025-F.webp",
+"https://http2.mlstatic.com/D_NQ_NP_2X_756597-MLA91874475099_092025-F.webp",
+"https://http2.mlstatic.com/D_NQ_NP_2X_790475-MLA91476393118_092025-F.webp",
+"https://http2.mlstatic.com/D_NQ_NP_2X_951441-MLA91874417875_092025-F.webp"
+],
+m90:[
+"https://http2.mlstatic.com/D_NQ_NP_2X_837450-MLA100129445279_122025-F.webp",
+"https://http2.mlstatic.com/D_NQ_NP_2X_801814-MLA91476720798_092025-F.webp",
+"https://http2.mlstatic.com/D_NQ_NP_2X_940771-MLA91874806035_092025-F.webp",
+"https://http2.mlstatic.com/D_NQ_NP_2X_942027-MLA91874806047_092025-F.webp",
+"https://http2.mlstatic.com/D_NQ_NP_2X_924217-MLA91874672837_092025-F.webp"
+]
+};
+
+let idx={a10s:0,m90:0};
+
+function changeImg(p,d){
+
+if(p==="air31"){
+let arr=air31Colors[current];
+index+=d;
+if(index<0) index=arr.length-1;
+if(index>=arr.length) index=0;
+document.getElementById("img-air31").src=arr[index];
+return;
+}
+
+let arr=normal[p];
+idx[p]+=d;
+if(idx[p]<0) idx[p]=arr.length-1;
+if(idx[p]>=arr.length) idx[p]=0;
+document.getElementById("img-"+p).src=arr[idx[p]];
+}
+
+</script>
+
+</body>
+</html>
